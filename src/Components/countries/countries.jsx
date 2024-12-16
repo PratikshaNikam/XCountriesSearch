@@ -1,7 +1,8 @@
 import { useState,useEffect} from "react";
 import styles from "./countries.module.css";
+import axios from "axios";
 
-export default function Countrycard() {
+export default function CountryCard() {
 
   const [countries, setCountries] = useState([]);
 
@@ -16,8 +17,14 @@ export default function Countrycard() {
   }
 
   const getCountries = () => {
-    fetch("https://restcountries.com/v3.1/all").then((res) => res.json()).then((data) => setCountries(data))
-    .catch((error)=>console.error("Error fetching data:", + error));
+   axios.get("https://restcountries.com/v3.1/all").then(
+    (response) => {
+      setCountries(response.data);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
 
   }
   
@@ -31,11 +38,13 @@ export default function Countrycard() {
   return (
     <div>
        <input type="text" placeholder="Search for a country" />
-    <div className={styles.subContainer}>
-     
+    
+       <div className={styles.subContainer}>
 
       {countries.map((country) => (
-        <Country name={country.name.common} flag={country.flags.png} key={country.name.common} />
+        
+          <Country name={country.name.common} flag={country.flags.png} key={country.name.common} />
+          
       ))}
       
       </div>
