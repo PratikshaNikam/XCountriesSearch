@@ -25,12 +25,18 @@ export default function Countries() {
 
 
   return (
-    <div className={styles.container}>
+    <div>
+       <input type="text" placeholder="Search for a country" />
+    <div className={styles.subContainer}>
+     
+
       {countries.map((country) => (
         <CountryCard name={country.name.common} flag={country.flags.png} key={country.name.common} />
       ))}
       
-    </div>
+      </div>
+      
+      </div>
   )
 }
 
