@@ -36,8 +36,8 @@ export default function CountryCard() {
 
 
   return (
-    <div>
-       <input type="text" placeholder="Search for a country" />
+    
+      
     
        <div className={styles.subContainer}>
 
@@ -49,7 +49,7 @@ export default function CountryCard() {
       
       </div>
       
-      </div>
+      
   )
 }
 
