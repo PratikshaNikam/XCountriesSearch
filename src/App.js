@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Countries from './Components/countries/countries';
+
+import Countrycard from './Components/countries/countries';
 
 function App() {
   return (
     <div >
       
-      <Countries/>
+      <Countrycard/>
     </div>
   );
 }

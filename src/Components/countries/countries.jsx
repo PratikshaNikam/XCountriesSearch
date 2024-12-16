@@ -1,11 +1,11 @@
 import { useState,useEffect} from "react";
 import styles from "./countries.module.css";
 
-export default function Countries() {
+export default function Countrycard() {
 
   const [countries, setCountries] = useState([]);
 
-  function CountryCard({ name, flag }) {
+  const Country=({ name, flag }) =>{
     return (
       <div className={styles.countryCard}>
         <img src={flag} alt={name} width="100px" height="100px" />
@@ -14,12 +14,16 @@ export default function Countries() {
     );
    
   }
+
+  const getCountries = () => {
+    fetch("https://restcountries.com/v3.1/all").then((res) => res.json()).then((data) => setCountries(data))
+    .catch((error)=>console.error("Error fetching data:", + error));
+
+  }
   
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all").then((res) => res.json()).then((data) => setCountries(data))
-    .catch((error)=>console.error("Error fetching data:", + error));
-    
+    getCountries();
   }, []);
   
 
@@ -31,7 +35,7 @@ export default function Countries() {
      
 
       {countries.map((country) => (
-        <CountryCard name={country.name.common} flag={country.flags.png} key={country.name.common} />
+        <Country name={country.name.common} flag={country.flags.png} key={country.name.common} />
       ))}
       
       </div>
