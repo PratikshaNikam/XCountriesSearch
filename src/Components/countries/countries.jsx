@@ -1,59 +1,35 @@
-import { useState,useEffect} from "react";
-import styles from "./countries.module.css";
-import axios from "axios";
+import React,{useEffect,useState} from "react"; 
 
-const CountryCard = ({ name, flag }) => {
+function CountryCard({ name, flagurl }){
+ console.log(name)
   return (
-    <div className={styles.countryCard}>
-      <img src={flag} alt={name} width="100px" height="100px" />
-      <p>{name}</p>
+    <div style={{display:"flex", flexDirection:"column", width:"150px",height:"150px", border:"1px solid gray", borderRadius:"10px", justifyContent:"center",alignItems:"center",padding:"10px"}} >
+      <img src={flagurl} alt={name} width="100px" height="100px"/>
+      <h3>{name}</h3>
     </div>
-  );
- 
-};
-
- export default function Country() {
-
-  const [countries, setCountries] = useState([]);
-
-  
-
-  const getCountries = () => {
-   axios.get("https://restcountries.com/v3.1/all").then(
-    (response) => {
-      setCountries(response.data);
-    },
-    (error) => {
-      console.log(error);
+  )
     }
-  );
 
-  }
+
+function Countries() {
+  // const array1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const [countries,setCountries]=useState([])
   
-
   useEffect(() => {
-    getCountries();
+    fetch("https://restcountries.com/v3.1/all").then((res) => res.json()).then((data) => setCountries(data))
+    .catch((error)=>console.error("Error fetching data:", + error));
+    
   }, []);
-  
 
-
+ // console.log(countries)
   return (
-    
-      
-    
-       <div className={styles.subContainer}>
-
-      {countries.map((country) => (
-        
-          <CountryCard name={country.name.common} flag={country.flags.png} key={country.name.common} />
-          
+    <div style={{display:"flex" ,flexWrap:"wrap",gap:"10px"}}>
+      {countries.map((item) => (
+        //console.log(item.flag)
+        <CountryCard name={item.name.common} flagurl={item.flags.png} key={item.name.common} />
       ))}
-      
-      </div>
-      
-      
+    </div>
   )
 }
 
-    
-    
+export default Countries;
