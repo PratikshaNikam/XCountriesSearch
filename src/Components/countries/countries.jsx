@@ -2,19 +2,21 @@ import { useState,useEffect} from "react";
 import styles from "./countries.module.css";
 import axios from "axios";
 
-export default function CountryCard() {
+const CountryCard = ({ name, flag }) => {
+  return (
+    <div className={styles.countryCard}>
+      <img src={flag} alt={name} width="100px" height="100px" />
+      <p>{name}</p>
+    </div>
+  );
+ 
+};
+
+ export default function Country() {
 
   const [countries, setCountries] = useState([]);
 
-  const Country=({ name, flag }) =>{
-    return (
-      <div className={styles.countryCard}>
-        <img src={flag} alt={name} width="100px" height="100px" />
-        <p>{name}</p>
-      </div>
-    );
-   
-  }
+  
 
   const getCountries = () => {
    axios.get("https://restcountries.com/v3.1/all").then(
@@ -43,7 +45,7 @@ export default function CountryCard() {
 
       {countries.map((country) => (
         
-          <Country name={country.name.common} flag={country.flags.png} key={country.name.common} />
+          <CountryCard name={country.name.common} flag={country.flags.png} key={country.name.common} />
           
       ))}
       

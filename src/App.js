@@ -1,13 +1,13 @@
 
 import './App.css';
 
-import CountryCard from './Components/countries/countries';
+import Country from './Components/countries/countries';
 
 function App() {
   return (
     <div >
       
-      <CountryCard/>
+      <Country/>
     </div>
   );
 }
