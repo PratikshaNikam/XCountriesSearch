@@ -1,14 +1,15 @@
 .countryCard{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   border: 1px solid gray;
-  padding: 10px;
-  margin:20px;
+  display:flex; 
+  flex-direction: column;
   width:150px;
-  height: 180px;
+  height:180px;
+  border: 1px solid black;
+  margin:10px; 
+  border-radius :10px;
+  justify-content :center;
+  align-items :center;
+  padding:10px;
+  
 
 }
 
@@ -21,4 +22,12 @@
  
   flex-wrap: wrap;
 
+}
+
+.img{
+  width: 500px; 
+  height: 20px;
+  borderRadius: 10px;
+  border: 1px solid gray;
+  padding: 10px 
 }
