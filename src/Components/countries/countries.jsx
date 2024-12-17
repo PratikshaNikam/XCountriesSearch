@@ -25,7 +25,7 @@ function Countries() {
   }, []);
 
 
-  useState(() => {
+  useEffect(() => {
     const filteredCountry = countries.filter((country) =>
       country.name.common.toLowerCase().includes(search.toLowerCase())
     );
